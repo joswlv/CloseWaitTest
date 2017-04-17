@@ -1,0 +1,4 @@
+logPath: /Users/Jo_seungwan/dev/TestLogs
+
+server:
+port: 8080
