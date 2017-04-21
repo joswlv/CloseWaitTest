@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
+
+import java.io.IOException;
+
 /**
  * Created by Jo_seungwan on 2017. 4. 17..
  */
@@ -35,15 +38,17 @@ public class TestController {
         return result;
     }
 
+    @ExceptionHandler(ClientAbortException.class)
+    public void handleClientAbortException2(Exception e){
+        if (e instanceof ClientAbortException){
+            log.error("ClientAbortException!!!!");
+        }
+    }
+
     @ExceptionHandler(Exception.class)
     public String handleClientAbortException(Exception e) {
-        if (e instanceof ClientAbortException) {
-            log.error("ClientAbortException");
-        } else {
-            log.error("Exception : ", e);
+            log.error("Exception : ");
             e.printStackTrace();
-        }
-
         return "error";
     }
 
